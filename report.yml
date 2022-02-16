@@ -41,4 +41,9 @@
         line: SDB_DISK_SIZE={% if ansible_devices.sdb is defined %}{{ ansible_facts['devices']['sdb']['size'] }}{% else %}NONE{% endif %}
         path: /root/report.txt        
         
-        
+    - name: check file content
+      shell: cat /root/report.txt
+      register: copy_results
+
+    - name: output of report.txt
+      debug: var= copy_results        
